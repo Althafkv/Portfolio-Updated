@@ -1,0 +1,433 @@
+/* Variables for Light Theme */
+:root {
+  --bg-card: #ffffff;
+  --bg-section: #eee;
+  --text-primary: #333;
+  --text-secondary: #666;
+  --text-light: #888;
+  --border-color: #e5e7eb;
+  --primary-color: rgb(0, 127, 115);
+  --primary-hover: rgb(0, 100, 90);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --border-radius: 16px;
+  --transition: all 0.3s ease;
+  --transition-slow: all 0.5s ease;
+}
+
+/* Variables for Dark Theme */
+[data-theme="dark"] {
+  --bg-card: #1a1a1a;
+  --bg-section: #333;
+  --text-primary: #ffffff;
+  --text-secondary: #e5e5e5;
+  --text-light: #b3b3b3;
+  --border-color: #333333;
+  --primary-color: rgb(0, 147, 135);
+  --primary-hover: rgb(0, 167, 155);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+}
+
+/* Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(12deg);
+  }
+}
+
+/* Main Section */
+.qualification.section {
+  background: var(--bg-section);
+  transition: var(--transition);
+}
+
+.qualification-wrapper {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+/* Tab Navigation */
+.qualification-tabs-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.qualification-tabs {
+  background: var(--bg-card);
+  padding: 8px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+  display: flex;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.qualification-button {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--primary-color);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.qualification-button:hover {
+  color: var(--primary-hover);
+  background: var(--border-color);
+  transform: translateY(-2px);
+}
+
+.qualification-button.qualification-active {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.05);
+}
+
+/* Dark mode specific styles for active button */
+[data-theme="dark"] .qualification-button.qualification-active {
+  background: var(--primary-color);
+  color: white;
+}
+
+[data-theme="dark"] .qualification-button.qualification-active:hover {
+  background: var(--primary-hover);
+  color: white;
+}
+
+.qualification-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  transition: var(--transition);
+}
+
+.qualification-icon.icon-active {
+  animation: rotate 0.3s ease-out;
+}
+
+/* Content Wrapper */
+.qualification-content-wrapper {
+  position: relative;
+}
+
+.qualification-content {
+  opacity: 0;
+  transform: translateY(32px) scale(0.95);
+  transition: var(--transition-slow);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.qualification-content-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  position: relative;
+  pointer-events: auto;
+}
+
+/* Timeline */
+.qualification-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.qualification-item {
+  position: relative;
+  animation: fadeInUp 0.6s ease-out both;
+  opacity: 0;
+}
+
+/* Timeline Dots and Lines */
+.qualification-timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 32px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transform: translateX(-8px);
+  box-shadow: 0 0 0 4px var(--bg-card), var(--shadow-md);
+  transition: var(--transition);
+  z-index: 2;
+}
+
+.education-dot,
+.experience-dot {
+  background: var(--primary-color);
+}
+
+.qualification-timeline-line {
+  position: absolute;
+  left: 0;
+  top: 48px;
+  width: 2px;
+  height: 64px;
+  transform: translateX(-1px);
+  z-index: 1;
+}
+
+.education-line,
+.experience-line {
+  background: var(--border-color);
+}
+
+/* Cards */
+.qualification-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 32px;
+  margin-left: 32px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+  transition: var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.qualification-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-color);
+}
+
+.qualification-card:hover .qualification-timeline-dot {
+  transform: translateX(-8px) scale(1.25);
+}
+
+.qualification-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.qualification-info {
+  flex: 1;
+}
+
+.qualification-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+  transition: var(--transition);
+}
+
+.qualification-card:hover .qualification-title {
+  color: var(--primary-hover);
+}
+
+.qualification-subtitle {
+  font-weight: 500;
+  margin-bottom: 0;
+  color: var(--text-secondary);
+}
+
+.education-subtitle,
+.experience-subtitle {
+  color: var(--primary-color);
+}
+
+.qualification-period {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.calendar-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.qualification-description {
+  color: var(--text-light);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Overlay Effects */
+.qualification-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: var(--transition);
+  pointer-events: none;
+  border-radius: var(--border-radius);
+}
+
+.education-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 127, 115, 0.05) 0%,
+    rgba(59, 130, 246, 0.05) 100%
+  );
+}
+
+.experience-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    rgba(139, 92, 246, 0.05) 100%
+  );
+}
+
+/* Dark mode overlay adjustments */
+[data-theme="dark"] .education-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 147, 135, 0.1) 0%,
+    rgba(59, 130, 246, 0.1) 100%
+  );
+}
+
+[data-theme="dark"] .experience-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(139, 92, 246, 0.1) 100%
+  );
+}
+
+.qualification-card:hover .qualification-overlay {
+  opacity: 1;
+}
+
+/* Section title styles */
+.section-title {
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .qualification.section {
+    padding: 60px 16px;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .qualification-header {
+    margin-bottom: 48px;
+  }
+
+  .qualification-tabs {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .qualification-button {
+    justify-content: center;
+    padding: 16px 24px;
+  }
+
+  .qualification-card {
+    margin-left: 24px;
+    padding: 24px;
+  }
+
+  .qualification-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .qualification-period {
+    align-self: flex-start;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .qualification-card {
+    margin-left: 16px;
+    padding: 20px;
+  }
+
+  .qualification-timeline-dot {
+    transform: translateX(-6px);
+  }
+
+  .qualification-card:hover .qualification-timeline-dot {
+    transform: translateX(-6px) scale(1.25);
+  }
+
+  .qualification-timeline-line {
+    transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .qualification-card {
+    margin-left: 12px;
+    padding: 16px;
+  }
+
+  .qualification-tabs {
+    margin: 0 -8px;
+  }
+
+  .qualification-button {
+    font-size: 0.875rem;
+    padding: 12px 16px;
+  }
+}
