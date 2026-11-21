@@ -44,7 +44,7 @@ function Qualification() {
 
   return (
     <section className="qualification section" id="qualification">
-      <h2 className="section-title" style={{ color: "#007F73" }}>
+      <h2 className="section-title" style={{ color: "var(--brand-ink, #007F73)" }}>
         Qualification
       </h2>
       <span className="section-subtitle">My personel journey</span>

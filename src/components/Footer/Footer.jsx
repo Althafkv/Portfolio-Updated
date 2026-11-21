@@ -20,7 +20,7 @@ function Footer() {
       </div>
 
       <div className="footer-container container">
-        <h1 className="footer-title" style={{ color: "#007F73" }}>
+        <h1 className="footer-title" style={{ color: "var(--brand-ink, #007F73)" }}>
           Portfolio.
         </h1>
 

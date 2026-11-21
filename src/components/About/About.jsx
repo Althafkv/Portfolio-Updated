@@ -6,7 +6,7 @@ import Aboutinfo from "./Aboutinfo";
 function About() {
   return (
     <section className="about section" id="about">
-      <h2 className="section-title" style={{ color: "#007F73" }}>
+      <h2 className="section-title" style={{ color: "var(--brand-ink, #007F73)" }}>
         About Me
       </h2>
       <span className="section-subtitle">My Introduction</span>

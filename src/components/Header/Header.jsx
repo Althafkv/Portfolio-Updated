@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Header.css";
 import Darkmode from "../Darkmode/Darkmode";
 import { IoApps } from "react-icons/io5";
@@ -9,20 +9,42 @@ import { FaLaptop } from "react-icons/fa";
 import { RiMessage3Fill } from "react-icons/ri";
 
 function Header() {
-  // change background header
-  window.addEventListener("scroll", function () {
-    const header = document.querySelector(".header");
-    if (this.scrollY >= 80) header.classList.add("scroll-header");
-    else header.classList.remove("scroll-header");
-  });
-
   const [toggle, setToggle] = useState(false);
   const [activenav, setActivenav] = useState("#home");
+
+  useEffect(() => {
+    const header = document.querySelector(".header");
+    const sections = Array.from(header.querySelectorAll(".nav-link"), link =>
+      document.getElementById(link.hash.slice(1))
+    ).filter(Boolean);
+
+    function updateNavigation() {
+      header.classList.toggle("scroll-header", window.scrollY >= 80);
+      const threshold = window.innerHeight / 3;
+      let current = sections[0];
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top > threshold) break;
+        current = section;
+      }
+      if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 1) {
+        current = sections[sections.length - 1];
+      }
+      if (current) setActivenav("#" + current.id);
+    }
+
+    updateNavigation();
+    window.addEventListener("scroll", updateNavigation, { passive: true });
+    window.addEventListener("resize", updateNavigation);
+    return () => {
+      window.removeEventListener("scroll", updateNavigation);
+      window.removeEventListener("resize", updateNavigation);
+    };
+  }, []);
 
   return (
     <header className="header">
       <nav className="nav container">
-        <a href="/" className="nav-logo" style={{ color: "#007F73" }}>
+        <a href="/" className="nav-logo" style={{ color: "var(--brand-ink, #007F73)" }}>
           Portfolio.
         </a>
 

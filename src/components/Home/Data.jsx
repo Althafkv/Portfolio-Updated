@@ -3,7 +3,7 @@ import Typewriter from 'typewriter-effect'
 function Data() {
   return (
     <div className="home-data">
-      <h1 className="home-title" style={{ color: "#007F73" }}>
+      <h1 className="home-title" style={{ color: "var(--brand-ink, #007F73)" }}>
         Althaf Kv
         <svg
           width="46"

@@ -29,7 +29,7 @@ const Works = () => {
       id: 1,
       title: "E-commerce using Mern",
       description:
-        "A full-stack E-commerce website built with React, Node, Express and MongoDB. Features include user authentication, payment integration, and admin dashboard.",
+        "A MERN online store with customer accounts and integrated payments. An admin dashboard lets the store team manage the shop.",
       image: ecom,
       technologies: ["React", "Node.js", "Express", "MongoDB"],
       liveUrl: "https://ebliss.vercel.app/",
@@ -40,7 +40,7 @@ const Works = () => {
       id: 2,
       title: "Sky Real - Mern",
       description:
-        "Sky Real is a responsive hotel booking website built with React, designed to help users discover and book hotels with ease.",
+        "A responsive hotel booking site built with React. Guests can explore hotels and book a stay from their phone or desktop.",
       image: sky,
       technologies: ["React", "Node.js", "Express", "MongoDB"],
       liveUrl: "https://sky-real-mern.vercel.app/",
@@ -51,7 +51,7 @@ const Works = () => {
       id: 3,
       title: "Roxi Chat Application",
       description:
-        "Roxi Chat is a real-time messaging app built with the MERN stack and Socket.io. It features instant message updates, typing indicators, and a clean, responsive interface. The project helped me strengthen my skills in real-time communication and full-stack development.",
+        "A MERN chat app that uses Socket.io to deliver messages in real time and show when someone is typing.",
       image: chat,
       technologies: ["React", "Node.js", "Express", "MongoDB", "Socket.io"],
       liveUrl: "https://roxi-chat.onrender.com/login",
@@ -62,7 +62,7 @@ const Works = () => {
       id: 4,
       title: "Admin Dashboard",
       description:
-        "A modern, responsive SaaS analytics dashboard built with React.js and Tailwind CSS. Features interactive charts, data tables, search, filtering, and a clean, user-friendly interface.",
+        "A React analytics dashboard with interactive charts and searchable, filterable tables for exploring store performance.",
       image: admindash,
       technologies: ["React", "JavaScript", "Tailwind CSS", "Recharts"],
       liveUrl: "https://data-hub-world.vercel.app",
@@ -73,7 +73,7 @@ const Works = () => {
       id: 5,
       title: "Portfolio",
       description:
-        "A modern, responsive portfolio website built with React to showcase my projects, skills, and professional background. Designed with a clean and intuitive UI, this site highlights my expertise in front-end development.",
+        "My React portfolio brings together selected projects, technical skills, and professional experience in a responsive layout.",
       image: port,
       technologies: ["React Js", "Material UI"],
       liveUrl: "https://althafkv.netlify.app",
@@ -84,7 +84,7 @@ const Works = () => {
       id: 6,
       title: "Gallery App",
       description:
-        "A dynamic image gallery application built with React that allows users to upload, store, and view their photos in an organized, visually appealing interface.",
+        "A responsive photo gallery where users can upload images, organize their collection, and browse the photos they have stored.",
       image: gallery,
       technologies: [
         "React Js",
@@ -102,7 +102,7 @@ const Works = () => {
       id: 7,
       title: "BMI React",
       description:
-        "A responsive BMI (Body Mass Index) calculator web app that allows users to quickly determine their BMI by entering their height and weight.",
+        "A responsive React calculator that uses height and weight to calculate body mass index and displays the result immediately.",
       image: bmi,
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://bmi-reactapp.netlify.app/",
@@ -113,7 +113,7 @@ const Works = () => {
       id: 8,
       title: "Minigame using Js",
       description:
-        "A fun, browser-based mini-game built with vanilla JavaScript, showcasing my ability to create engaging, interactive experiences with clean code and creative design.",
+        "A browser mini-game built with vanilla JavaScript that combines interactive gameplay with a custom interface.",
       image: mini,
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://js-minigame.netlify.app/",
@@ -124,7 +124,7 @@ const Works = () => {
       id: 9,
       title: "Gym App",
       description:
-        "A dynamic fitness application designed to help users plan, track, and optimize their workouts. Built with React.js, this app demonstrates my ability to create interactive, data-driven interfaces with modern front-end technologies.",
+        "A responsive fitness app built with React that helps users plan workouts, track their routines, and manage their exercise schedule.",
       image: gym,
       technologies: ["React Js"],
       liveUrl: "https://gym-app-tan-xi.vercel.app/",
@@ -134,6 +134,7 @@ const Works = () => {
   ];
 
   const handleTouchStart = (e) => {
+    setTouchEnd(0);
     setTouchStart(e.targetTouches[0].clientX);
   };
 
@@ -203,220 +204,35 @@ const Works = () => {
         position: "relative",
       }}
     >
-      {/* Main Carousel Container */}
       <div
-        style={{
-          position: "relative",
-          overflow: "hidden",
-          borderRadius: "16px",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-          backgroundColor: "white",
-          transform: isAnimating ? "scale(0.98)" : "scale(1)",
-          transition: "transform 0.3s ease",
-          marginBottom: "30px",
-          overflowX: window.innerWidth <= 768 ? "auto" : "hidden",
-          scrollSnapType: window.innerWidth <= 768 ? "x mandatory" : "none",
-          WebkitOverflowScrolling: "touch",
-        }}
-        onTouchStart={window.innerWidth <= 768 ? handleTouchStart : undefined}
-        onTouchMove={window.innerWidth <= 768 ? handleTouchMove : undefined}
-        onTouchEnd={window.innerWidth <= 768 ? handleTouchEnd : undefined}
+        className="project-showcase"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
-        {/* Project Card */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: window.innerWidth > 768 ? "1fr 1fr" : "1fr",
-            minHeight: "500px",
-          }}
-        >
-          {/* Project Image */}
-          <div
-            style={{
-              position: "relative",
-              overflow: "hidden",
-              backgroundColor: "#f3f4f6",
-            }}
-          >
+        <div className="project-showcase-grid">
+          <div className="project-preview">
             <img
               src={currentProject.image}
-              loading="lazy"
               decoding="async"
-              alt={currentProject.title}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                transition: "transform 0.5s ease",
-                transform: isAnimating ? "scale(1.05)" : "scale(1)",
-              }}
+              alt={currentProject.title + " screenshot"}
             />
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: "100px",
-                background:
-                  "linear-gradient(to top, rgba(0,0,0,0.3), transparent)",
-                pointerEvents: "none",
-              }}
-            ></div>
           </div>
-
-          {/* Project Details */}
-          <div
-            style={{
-              padding: "40px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <div>
-              <h3
-                style={{
-                  fontSize: "2rem",
-                  fontWeight: "bold",
-                  color: "#1f2937",
-                  margin: "0 0 16px 0",
-                  opacity: isAnimating ? 0.7 : 1,
-                  transition: "opacity 0.3s ease",
-                }}
-              >
-                {currentProject.title}
-              </h3>
-
-              <p
-                style={{
-                  color: "#6b7280",
-                  fontSize: "1.1rem",
-                  lineHeight: "1.6",
-                  margin: "0 0 24px 0",
-                  textAlign: "justify",
-                }}
-              >
-                {currentProject.description}
-              </p>
-
-              {/* Technologies */}
-              <div style={{ marginBottom: "32px" }}>
-                <h4
-                  style={{
-                    fontSize: "0.9rem",
-                    fontWeight: "600",
-                    color: "#6b7280",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    margin: "0 0 12px 0",
-                  }}
-                >
-                  Technologies
-                </h4>
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "8px",
-                  }}
-                >
-                  {currentProject.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      style={{
-                        padding: "6px 12px",
-                        backgroundColor: "#007F73",
-                        color: "white",
-                        borderRadius: "20px",
-                        fontSize: "0.85rem",
-                        fontWeight: "500",
-                        cursor: "pointer",
-                        transition: "transform 0.2s ease",
-                      }}
-                      onMouseEnter={(e) =>
-                        (e.target.style.transform = "scale(1.05)")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.target.style.transform = "scale(1)")
-                      }
-                    >
-                      {tech}
-                    </span>
-                  ))}
+          <div className="project-summary-stack">
+            {projects.map((project, index) => (
+              <div className="project-summary" key={project.id} aria-hidden={index !== currentIndex}>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <h4>Technologies</h4>
+                <ul className="project-tags">
+                  {project.technologies.map(tech => <li key={tech}>{tech}</li>)}
+                </ul>
+                <div className="project-actions">
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">👁️ View Live</a>
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">📁 View Code</a>
                 </div>
               </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div
-              style={{
-                display: "flex",
-                gap: "16px",
-                flexDirection: window.innerWidth < 576 ? "column" : "row",
-              }}
-            >
-              <a
-                href={currentProject.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  flex: 1,
-                  backgroundColor: "#007F73",
-                  color: "white",
-                  padding: "12px 24px",
-                  borderRadius: "8px",
-                  fontWeight: "600",
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                  transition: "all 0.3s ease",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = "#006B5F";
-                  e.target.style.transform = "scale(1.05)";
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = "#007F73";
-                  e.target.style.transform = "scale(1)";
-                }}
-              >
-                👁️ View Live
-              </a>
-              <a
-                href={currentProject.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  flex: 1,
-                  backgroundColor: "#1f2937",
-                  color: "white",
-                  padding: "12px 24px",
-                  borderRadius: "8px",
-                  fontWeight: "600",
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                  transition: "all 0.3s ease",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = "#111827";
-                  e.target.style.transform = "scale(1.05)";
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = "#1f2937";
-                  e.target.style.transform = "scale(1)";
-                }}
-              >
-                📁 View Code
-              </a>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -431,7 +247,7 @@ const Works = () => {
           top: "45%",
           transform: "translateY(-50%)",
           backgroundColor: "#ffffff",
-          color: "#333333",
+          color: "var(--project-heading, #333333)",
           border: "1px solid #e0e0e0",
           borderRadius: "8px",
           width: "40px",
@@ -447,7 +263,7 @@ const Works = () => {
           fontWeight: "bold",
           zIndex: 10,
           touchAction: "manipulation",
-          background: "linear-gradient(145deg, #ffffff, #f5f5f5)",
+          background: "var(--project-control, linear-gradient(145deg, #ffffff, #f5f5f5))",
           lineHeight: "1",
           padding: "0",
         }}
@@ -486,7 +302,7 @@ const Works = () => {
           top: "45%",
           transform: "translateY(-50%)",
           backgroundColor: "#ffffff",
-          color: "#333333",
+          color: "var(--project-heading, #333333)",
           border: "1px solid #e0e0e0",
           borderRadius: "8px",
           width: "40px",
@@ -502,7 +318,7 @@ const Works = () => {
           fontWeight: "bold",
           zIndex: 10,
           touchAction: "manipulation",
-          background: "linear-gradient(145deg, #ffffff, #f5f5f5)",
+          background: "var(--project-control, linear-gradient(145deg, #ffffff, #f5f5f5))",
           lineHeight: "1",
           padding: "0",
         }}
@@ -577,7 +393,7 @@ const Works = () => {
         style={{
           textAlign: "center",
           marginTop: "16px",
-          color: "#6b7280",
+          color: "var(--project-copy, #6b7280)",
           fontWeight: "500",
         }}
       >

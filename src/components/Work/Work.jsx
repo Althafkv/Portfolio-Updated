@@ -7,7 +7,7 @@ function Work() {
       className="work section"
       id="projects"
     >
-      <h2 className="section-title" style={{ color: "#007F73" }}>
+      <h2 className="section-title" style={{ color: "var(--brand-ink, #007F73)" }}>
         Portfolio
       </h2>
       <span className="section-subtitle">Recent Works</span>
